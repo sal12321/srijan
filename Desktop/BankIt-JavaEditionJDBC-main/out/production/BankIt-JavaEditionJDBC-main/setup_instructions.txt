@@ -1,0 +1,67 @@
+
+📁 Project Folder Structure
+
+bankIT/
+├── run.bat
+├── lib/
+│   └── mysql-connector-j-9.3.0.jar
+├── src/
+│   └── com/
+│       └── banking/
+│           └── BankingApp.java
+
+🛠️ MySQL Database Setup
+
+CREATE DATABASE forBanking;
+USE forBanking;
+
+CREATE TABLE users (
+    acc_no INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    phone BIGINT UNIQUE NOT NULL,
+    balance DOUBLE DEFAULT 0.0,
+    pin VARCHAR(64) NOT NULL,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE admins (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(64) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE logs (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    Who VARCHAR(20) NOT NULL,
+    WhoseId INT NOT NULL,
+    What VARCHAR(50) NOT NULL,
+    WhomeId INT NOT NULL,
+    message VARCHAR(200) NOT NULL,
+    status VARCHAR(20) NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO admins (username, password) VALUES
+('admin', '039df8f1999cb4a6675860fe51c00f48ca7a9c3489062e476182ee1e8ba5e89a');// 801913 is pass
+
+🖥️ run.bat (Windows Batch File)
+
+@echo off
+REM Compile the Java file
+javac -d . src\com\banking\BankingApp.java
+
+REM Run the application
+java -cp ".;lib\mysql-connector-j-9.3.0.jar" src.com.banking.BankingApp
+pause
+
+📦 To Run the Project
+
+1. Place the files in the folder structure above.
+2. Make sure MySQL is running and the database is set up.
+3. Open terminal/PowerShell in the `bankIT` folder.
+4. Run the command: .\run.bat
+
+

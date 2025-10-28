@@ -3,1009 +3,259 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Chen - Game Developer Portfolio</title>
-    <style>
-        /* ==================== RESET & BASE STYLES ==================== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-color: #00ffff;
-            --secondary-color: #ff00ff;
-            --accent-color: #7b2cbf;
-            --dark-bg: hsl(0, 0%, 100%);
-            --card-bg: #bbbbbb;
-            --text-light: #e0e0e0;
-            --text-dim: #a0a0a0;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                        --primary-color: #2563eb;
-            --secondary-color: #7c3aed;
-            --accent-color: #0891b2;
-            --light-bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text-dark: #354257;
-            --text-medium: #475569;
-            --border-color: #e2e8
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* ==================== NAVIGATION BAR ==================== */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 15, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1.5rem 5%;
-            transition: var(--transition);
-        }
-
-        nav.scrolled {
-            padding: 1rem 5%;
-            box-shadow: 0 4px 20px rgba(0, 255, 255, 0.1);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0;
-        }
-
-        .mobile-menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: var(--primary-color);
-            transition: var(--transition);
-        }
-
-        /* ==================== HERO SECTION ==================== */
-        .hero {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .hero-video-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .hero-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Fallback background image for mobile or when video fails */
-        .hero-fallback {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(10, 10, 15, 0.7), rgba(26, 26, 46, 0.8));
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            padding: 2rem;
-            max-width: 900px;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-content h1 {
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 1s ease-out 0.2s both;
-        }
-
-        .hero-content p {
-            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-            color: var(--text-dim);
-            margin-bottom: 2.5rem;
-            animation: fadeInUp 1s ease-out 0.4s both;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: var(--dark-bg);
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 50px;
-            transition: var(--transition);
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.5);
-        }
-
-        /* Loading spinner for video */
-        .video-loading {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(0, 255, 255, 0.2);
-            border-top: 3px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            z-index: 5;
-        }
-
-        @keyframes spin {
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        /* ==================== PROJECTS SECTION ==================== */
-        .projects {
-            padding: 6rem 5%;
-            background: var(--dark-bg);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-dim);
-            font-size: 1.2rem;
-            margin-bottom: 4rem;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .project-card {
-            position: relative;
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: var(--transition);
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.2);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .project-card:hover .project-image {
-            transform: scale(1.1);
-        }
-
-        .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.9), rgba(123, 44, 191, 0.9));
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: var(--transition);
-            padding: 2rem;
-        }
-
-        .project-card:hover .project-overlay {
-            opacity: 1;
-        }
-
-        .project-overlay h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            color: var(--dark-bg);
-        }
-
-        .project-overlay p {
-            color: var(--dark-bg);
-            text-align: center;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .project-link {
-            padding: 0.6rem 1.5rem;
-            background: var(--dark-bg);
-            color: var(--primary-color);
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .project-link:hover {
-            background: var(--primary-color);
-            color: var(--dark-bg);
-        }
-
-        .project-info {
-            padding: 1.5rem;
-        }
-
-        .project-tech {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .tech-badge {
-            padding: 0.3rem 0.8rem;
-            background: rgba(0, 255, 255, 0.1);
-            border: 1px solid var(--primary-color);
-            border-radius: 15px;
-            font-size: 0.85rem;
-            color: var(--primary-color);
-        }
-
-        /* ==================== ABOUT SECTION ==================== */
-        .about {
-            padding: 6rem 5%;
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.5), rgba(10, 10, 15, 0.8));
-        }
-
-        .about-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            color: var(--text-dim);
-        }
-
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .skill-tag {
-            padding: 0.6rem 1.2rem;
-            background: var(--card-bg);
-            border: 2px solid var(--primary-color);
-            border-radius: 25px;
-            font-weight: 600;
-            color: var(--primary-color);
-            transition: var(--transition);
-        }
-
-        .skill-tag:hover {
-            background: var(--primary-color);
-            color: var(--dark-bg);
-            transform: translateY(-3px);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--card-bg);
-            border: 2px solid var(--primary-color);
-            border-radius: 50%;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-size: 1.3rem;
-            transition: var(--transition);
-        }
-
-        .social-link:hover {
-            background: var(--primary-color);
-            color: var(--dark-bg);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.4);
-        }
-
-        /* ==================== CONTACT SECTION ==================== */
-        .contact {
-            padding: 6rem 5%;
-            background: var(--dark-bg);
-        }
-
-        .contact-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group label {
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            padding: 1rem;
-            background: var(--card-bg);
-            border: 2px solid rgba(0, 255, 255, 0.2);
-            border-radius: 10px;
-            color: var(--text-light);
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .submit-button {
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: var(--dark-bg);
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
-        }
-
-        .submit-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.5);
-        }
-
-        /* ==================== FOOTER ==================== */
-        footer {
-            padding: 3rem 5%;
-            background: rgba(10, 10, 15, 0.95);
-            text-align: center;
-            border-top: 1px solid rgba(0, 255, 255, 0.1);
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .back-to-top {
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            width: 50px;
-            height: 50px;
-            background: var(--card-bg);
-            border: 2px solid var(--primary-color);
-            border-radius: 50%;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-size: 1.5rem;
-            line-height: 46px;
-            transition: var(--transition);
-        }
-
-        .back-to-top:hover {
-            background: var(--primary-color);
-            color: var(--dark-bg);
-            transform: translateY(-5px);
-        }
-
-        footer p {
-            color: var(--text-dim);
-            font-size: 0.95rem;
-        }
-
-        /* ==================== RESPONSIVE DESIGN ==================== */
-        @media (max-width: 1024px) {
-            .projects-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .about-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 70%;
-                height: 100vh;
-                background: rgba(10, 10, 15, 0.98);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 2rem;
-                transition: right 0.4s ease;
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .mobile-menu-toggle {
-                display: flex;
-                z-index: 1001;
-            }
-
-            .mobile-menu-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-
-            .mobile-menu-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .mobile-menu-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -7px);
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-video {
-                display: none;
-            }
-
-            .social-links {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            nav {
-                padding: 1rem 5%;
-            }
-
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .hero-content p {
-                font-size: 1rem;
-            }
-
-            .projects, .about, .contact {
-                padding: 4rem 5%;
-            }
-        }
-    </style>
+    <title>Game Developer Portfolio</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- ==================== NAVIGATION ==================== -->
-    <nav id="navbar">
+    <!-- Animated Background -->
+    <div class="bg-particles" id="bgParticles"></div>
+
+    <!-- Navigation -->
+    <nav>
         <div class="nav-container">
-            <div class="logo">AC</div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <div class="logo">DevSRIJAN</div>
+            <div class="nav-icons">
+                <a href="https://linkedin.com" class="nav-icon" title="LinkedIn">
+                    <span>in</span>
+                </a>
+                <a href="https://instagram.com" class="nav-icon" title="Instagram">
+                    <span>📷</span>
+                </a>
+                <a href="mailto:contact@example.com" class="nav-icon" title="Contact">
+                    <span>✉</span>
+                </a>
+                <a href="#resume" class="nav-icon" title="Resume">
+                    <span>📄</span>
+                </a>
+            </div>
         </div>
     </nav>
 
-    <!-- ==================== HERO SECTION ==================== -->
-    <!-- UPDATE: Replace video source with your own background video -->
-    <section class="hero" id="home">
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="hero-video-container">
-            <div class="hero-fallback"></div>
-            <div class="video-loading" id="videoLoading"></div>
-            <video class="hero-video" id="heroVideo" autoplay muted loop playsinline>
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-futuristic-devices-34487-large.mp4" type="video/mp4">
+
+            <video class="hero-video" autoplay muted loop playsinline preload="none">
+                <source src="./ShowcaseVideo.mp4" type="video/mp4">
             </video>
         </div>
-        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <!-- UPDATE: Change name and tagline -->
-            <h1>Hi, I'm Alex Chen, Game Developer & Designer</h1>
-            <p>I create interactive experiences, games, and simulations that push boundaries</p>
-            <a href="#projects" class="cta-button">View Projects</a>
+            <h1 class="hero-title">Hi, I'm Srijan Giri</h1>
+            <p class="hero-subtitle">A Passionate Game Developer</p>
+            <p class="hero-tagline">Crafting worlds, building mechanics, and bringing stories to life.</p>
         </div>
     </section>
 
-    <!-- ==================== PROJECTS SECTION ==================== -->
-    <!-- UPDATE: Replace project images, titles, descriptions, and links -->
-    <section class="projects" id="projects">
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-subtitle">A collection of my recent work in game development</p>
+    <!-- Projects Section -->
+    <section class="projects">
+        <h2 class="section-title">Game Portfolio</h2>
         <div class="projects-grid">
             <!-- Project 1 -->
             <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&h=400&fit=crop" alt="Neon Racer game screenshot" class="project-image">
-                <div class="project-overlay">
-                    <h3>Neon Racer</h3>
-                    <p>Fast-paced cyberpunk racing game with procedural tracks</p>
-                    <div class="project-links">
-                        <a href="#" class="project-link" aria-label="Play Neon Racer demo">Demo</a>
-                        <a href="#" class="project-link" aria-label="View Neon Racer source code">GitHub</a>
-                    </div>
+                <div class="project-thumbnail">
+                    <video class="hero-video" autoplay muted loop playsinline preload="none">
+                <source src="./videos/Block_pushes_character_backwad.mp4" type="video/mp4">
+            </video>
                 </div>
-                <div class="project-info">
+                <div class="project-content">
+                    <h3 class="project-title">Block_pushes_character_backwad</h3>
+                    <ul class="project-features">
+                        <li>Open-world exploration with dynamic weather systems</li>
+                        <li>Advanced climbing mechanics with stamina management</li>
+                        <li>Procedurally generated mountain terrain and caves</li>
+                        <li>Multiplayer co-op mode with up to 4 players</li>
+                        <li>Real-time day/night cycle affecting gameplay</li>
+                    </ul>
                     <div class="project-tech">
-                        <span class="tech-badge">Unity</span>
-                        <span class="tech-badge">C#</span>
+                        <span class="tech-badge">Unreal Engine 5</span>
+                        <span class="tech-badge">C++</span>
                         <span class="tech-badge">Blender</span>
+                        <span class="tech-badge">Photon</span>
                     </div>
+                    <a href="#" class="project-button">Play Demo</a>
                 </div>
             </div>
 
             <!-- Project 2 -->
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=600&h=400&fit=crop" alt="Dungeon Quest game screenshot" class="project-image">
-                <div class="project-overlay">
-                    <h3>Dungeon Quest</h3>
-                    <p>Roguelike dungeon crawler with dynamic combat system</p>
-                    <div class="project-links">
-                        <a href="#" class="project-link" aria-label="Play Dungeon Quest demo">Demo</a>
-                        <a href="#" class="project-link" aria-label="View Dungeon Quest source code">GitHub</a>
-                    </div>
+                        <div class="project-card">
+                <div class="project-thumbnail">
+                    <video class="hero-video" autoplay muted loop playsinline preload="none">
+                <source src="./videos/Block_pushes_character_backwad.mp4" type="video/mp4">
+            </video>
                 </div>
-                <div class="project-info">
+                <div class="project-content">
+                    <h3 class="project-title">Block_pushes_character_backwad</h3>
+                    <ul class="project-features">
+                        <li>Open-world exploration with dynamic weather systems</li>
+                        <li>Advanced climbing mechanics with stamina management</li>
+                        <li>Procedurally generated mountain terrain and caves</li>
+                        <li>Multiplayer co-op mode with up to 4 players</li>
+                        <li>Real-time day/night cycle affecting gameplay</li>
+                    </ul>
                     <div class="project-tech">
-                        <span class="tech-badge">Unreal Engine</span>
+                        <span class="tech-badge">Unreal Engine 5</span>
                         <span class="tech-badge">C++</span>
-                        <span class="tech-badge">Blueprints</span>
+                        <span class="tech-badge">Blender</span>
+                        <span class="tech-badge">Photon</span>
                     </div>
+                    <a href="#" class="project-button">Play Demo</a>
                 </div>
             </div>
 
             <!-- Project 3 -->
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=600&h=400&fit=crop" alt="Space Odyssey game screenshot" class="project-image">
-                <div class="project-overlay">
-                    <h3>Space Odyssey</h3>
-                    <p>Exploration game with realistic physics and stunning visuals</p>
-                    <div class="project-links">
-                        <a href="#" class="project-link" aria-label="Play Space Odyssey demo">Demo</a>
-                        <a href="#" class="project-link" aria-label="View Space Odyssey source code">GitHub</a>
-                    </div>
+                        <div class="project-card">
+                <div class="project-thumbnail">
+                    <video class="hero-video" autoplay muted loop playsinline preload="none">
+                <source src="./videos/Block_pushes_character_backwad.mp4" type="video/mp4">
+            </video>
                 </div>
-                <div class="project-info">
+                <div class="project-content">
+                    <h3 class="project-title">Block_pushes_character_backwad</h3>
+                    <ul class="project-features">
+                        <li>Open-world exploration with dynamic weather systems</li>
+                        <li>Advanced climbing mechanics with stamina management</li>
+                        <li>Procedurally generated mountain terrain and caves</li>
+                        <li>Multiplayer co-op mode with up to 4 players</li>
+                        <li>Real-time day/night cycle affecting gameplay</li>
+                    </ul>
                     <div class="project-tech">
-                        <span class="tech-badge">Unity</span>
-                        <span class="tech-badge">WebGL</span>
-                        <span class="tech-badge">HLSL</span>
+                        <span class="tech-badge">Unreal Engine 5</span>
+                        <span class="tech-badge">C++</span>
+                        <span class="tech-badge">Blender</span>
+                        <span class="tech-badge">Photon</span>
                     </div>
+                    <a href="#" class="project-button">Play Demo</a>
                 </div>
             </div>
 
             <!-- Project 4 -->
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop" alt="Puzzle Dimension game screenshot" class="project-image">
-                <div class="project-overlay">
-                    <h3>Puzzle Dimension</h3>
-                    <p>Mind-bending 3D puzzle game with gravity mechanics</p>
-                    <div class="project-links">
-                        <a href="#" class="project-link" aria-label="Play Puzzle Dimension demo">Demo</a>
-                        <a href="#" class="project-link" aria-label="View Puzzle Dimension source code">GitHub</a>
-                    </div>
+                        <div class="project-card">
+                <div class="project-thumbnail">
+                    <video class="hero-video" autoplay muted loop playsinline preload="none">
+                <source src="./videos/Block_pushes_character_backwad.mp4" type="video/mp4">
+            </video>
                 </div>
-                <div class="project-info">
+                <div class="project-content">
+                    <h3 class="project-title">Block_pushes_character_backwad</h3>
+                    <ul class="project-features">
+                        <li>Open-world exploration with dynamic weather systems</li>
+                        <li>Advanced climbing mechanics with stamina management</li>
+                        <li>Procedurally generated mountain terrain and caves</li>
+                        <li>Multiplayer co-op mode with up to 4 players</li>
+                        <li>Real-time day/night cycle affecting gameplay</li>
+                    </ul>
                     <div class="project-tech">
-                        <span class="tech-badge">Godot</span>
-                        <span class="tech-badge">GDScript</span>
-                        <span class="tech-badge">Shaders</span>
+                        <span class="tech-badge">Unreal Engine 5</span>
+                        <span class="tech-badge">C++</span>
+                        <span class="tech-badge">Blender</span>
+                        <span class="tech-badge">Photon</span>
                     </div>
+                    <a href="#" class="project-button">Play Demo</a>
                 </div>
             </div>
 
             <!-- Project 5 -->
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=400&fit=crop" alt="Battle Arena game screenshot" class="project-image">
-                <div class="project-overlay">
-                    <h3>Battle Arena</h3>
-                    <p>Multiplayer arena shooter with strategic gameplay</p>
-                    <div class="project-links">
-                        <a href="#" class="project-link" aria-label="Play Battle Arena demo">Demo</a>
-                        <a href="#" class="project-link" aria-label="View Battle Arena source code">GitHub</a>
-                    </div>
+                        <div class="project-card">
+                <div class="project-thumbnail">
+                    <video class="hero-video" autoplay muted loop playsinline preload="none">
+                <source src="./videos/Block_pushes_character_backwad.mp4" type="video/mp4">
+            </video>
                 </div>
-                <div class="project-info">
+                <div class="project-content">
+                    <h3 class="project-title">Block_pushes_character_backwad</h3>
+                    <ul class="project-features">
+                        <li>Open-world exploration with dynamic weather systems</li>
+                        <li>Advanced climbing mechanics with stamina management</li>
+                        <li>Procedurally generated mountain terrain and caves</li>
+                        <li>Multiplayer co-op mode with up to 4 players</li>
+                        <li>Real-time day/night cycle affecting gameplay</li>
+                    </ul>
                     <div class="project-tech">
-                        <span class="tech-badge">Unity</span>
-                        <span class="tech-badge">Netcode</span>
+                        <span class="tech-badge">Unreal Engine 5</span>
+                        <span class="tech-badge">C++</span>
+                        <span class="tech-badge">Blender</span>
                         <span class="tech-badge">Photon</span>
                     </div>
+                    <a href="#" class="project-button">Play Demo</a>
                 </div>
             </div>
 
             <!-- Project 6 -->
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&h=400&fit=crop" alt="VR Explorer game screenshot" class="project-image">
-                <div class="project-overlay">
-                    <h3>VR Explorer</h3>
-                    <p>Immersive VR experience for architectural visualization</p>
-                    <div class="project-links">
-                        <a href="#" class="project-link" aria-label="Play VR Explorer demo">Demo</a>
-                        <a href="#" class="project-link" aria-label="View VR Explorer source code">GitHub</a>
-                    </div>
+                        <div class="project-card">
+                <div class="project-thumbnail">
+                    <video class="hero-video" autoplay muted loop playsinline preload="none">
+                <source src="./videos/Block_pushes_character_backwad.mp4" type="video/mp4">
+            </video>
                 </div>
-                <div class="project-info">
+                <div class="project-content">
+                    <h3 class="project-title">Block_pushes_character_backwad</h3>
+                    <ul class="project-features">
+                        <li>Open-world exploration with dynamic weather systems</li>
+                        <li>Advanced climbing mechanics with stamina management</li>
+                        <li>Procedurally generated mountain terrain and caves</li>
+                        <li>Multiplayer co-op mode with up to 4 players</li>
+                        <li>Real-time day/night cycle affecting gameplay</li>
+                    </ul>
                     <div class="project-tech">
-                        <span class="tech-badge">Unreal Engine</span>
-                        <span class="tech-badge">VR</span>
-                        <span class="tech-badge">XR Toolkit</span>
+                        <span class="tech-badge">Unreal Engine 5</span>
+                        <span class="tech-badge">C++</span>
+                        <span class="tech-badge">Blender</span>
+                        <span class="tech-badge">Photon</span>
                     </div>
+                    <a href="#" class="project-button">Play Demo</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ==================== ABOUT SECTION ==================== -->
-    <!-- UPDATE: Replace bio, skills, and social links -->
-    <section class="about" id="about">
-        <div class="about-container">
-            <div class="about-text">
-                <h2>About Me</h2>
-                <p>
-                    I'm a passionate game developer with 5+ years of experience creating immersive interactive experiences. 
-                    My expertise spans multiple game engines, programming languages, and creative tools. I love bringing 
-                    ideas to life through code, art, and sound design.
-                </p>
-                <p>
-                    When I'm not coding, you'll find me exploring indie games, experimenting with new technologies, 
-                    or contributing to open-source game development projects.
-                </p>
-                <div class="skills-list">
-                    <span class="skill-tag">Unity</span>
-                    <span class="skill-tag">Unreal Engine</span>
-                    <span class="skill-tag">C#</span>
-                    <span class="skill-tag">C++</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">Blender</span>
-                    <span class="skill-tag">3D Modeling</span>
-                    <span class="skill-tag">Shader Programming</span>
-                    <span class="skill-tag">Game Design</span>
-                    <span class="skill-tag">VR/AR</span>
-                </div>
-                <!-- UPDATE: Replace social links with your actual profiles -->
-                <div class="social-links">
-                    <a href="#" class="social-link" aria-label="LinkedIn profile" title="LinkedIn">in</a>
-                    <a href="#" class="social-link" aria-label="GitHub profile" title="GitHub">gh</a>
-                    <a href="#" class="social-link" aria-label="Instagram profile" title="Instagram">ig</a>
-                    <a href="#" class="social-link" aria-label="Discord profile" title="Discord">dc</a>
-                    <a href="#" class="social-link" aria-label="Download resume" title="Resume">cv</a>
-                </div>
-            </div>
-            <div class="about-visual">
-                <!-- Optional: Add a profile image or 3D model viewer here -->
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== CONTACT SECTION ==================== -->
-    <!-- UPDATE: Replace email address and configure form submission -->
-    <section class="contact" id="contact">
-        <h2 class="section-title">Get In Touch</h2>
-        <p class="section-subtitle">Let's collaborate on your next project</p>
-        <div class="contact-container">
-            <form class="contact-form" id="contactForm">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required aria-required="true" placeholder="Your name">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required aria-required="true" placeholder="your.email@example.com">
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required aria-required="true" placeholder="Tell me about your project..."></textarea>
-                </div>
-                <button type="submit" class="submit-button">Send Message</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- ==================== FOOTER ==================== -->
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <a href="#home" class="back-to-top" aria-label="Back to top">↑</a>
-            <p>&copy; 2025 Alex Chen. All rights reserved.</p>
-            <p style="margin-top: 0.5rem; font-size: 0.85rem;">Built with passion for interactive experiences</p>
+            <p class="footer-quote">"Code. Design. Play. Repeat."</p>
+            <div class="footer-divider"></div>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">Contact</a>
+            </div>
+            <p class="footer-copyright">© 2025 Game Developer Portfolio. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- ==================== JAVASCRIPT ==================== -->
     <script>
-        // ==================== NAVIGATION SCROLL EFFECT ====================
-        const navbar = document.getElementById('navbar');
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const navLinks = document.getElementById('navLinks');
-        const navLinksItems = document.querySelectorAll('.nav-links a');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // ==================== MOBILE MENU TOGGLE ====================
-        mobileMenuToggle.addEventListener('click', () => {
-            mobileMenuToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        navLinksItems.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-                mobileMenuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-            }
-        });
-
-        // ==================== VIDEO LOADING & FALLBACK ====================
-        const heroVideo = document.getElementById('heroVideo');
-        const videoLoading = document.getElementById('videoLoading');
-
-        // Hide loading spinner when video is ready
-        heroVideo.addEventListener('loadeddata', () => {
-            videoLoading.style.display = 'none';
-        });
-
-        // Fallback if video fails to load
-        heroVideo.addEventListener('error', () => {
-            videoLoading.style.display = 'none';
-            heroVideo.style.display = 'none';
-            console.log('Video failed to load, using fallback background');
-        });
-
-        // Ensure video loops properly (backup for autoplay issues)
-        heroVideo.addEventListener('ended', () => {
-            heroVideo.currentTime = 0;
-            heroVideo.play();
-        });
-
-        // Mobile video handling - pause video on mobile to save bandwidth
-        if (window.innerWidth <= 768) {
-            heroVideo.pause();
-            heroVideo.style.display = 'none';
-            videoLoading.style.display = 'none';
+        // Generate background particles
+        const bgParticles = document.getElementById('bgParticles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            bgParticles.appendChild(particle);
         }
 
-        // ==================== SMOOTH SCROLLING ====================
+        // Smooth scroll for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const offsetTop = target.offsetTop - 80; // Account for fixed navbar
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 }
             });
         });
 
-        // ==================== FORM SUBMISSION ====================
-        const contactForm = document.getElementById('contactForm');
-        
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(contactForm);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const message = formData.get('message');
-            
-            // UPDATE: Replace with your actual form handling logic
-            // This is a placeholder - integrate with your backend or email service
-            console.log('Form submitted:', { name, email, message });
-            
-            // Show success message (replace with your own UI feedback)
-            alert('Thank you for your message! I\'ll get back to you soon.');
-            
-            // Reset form
-            contactForm.reset();
-            
-            // Example: Send to email service (uncomment and configure)
-            // fetch('YOUR_FORM_ENDPOINT', {
-            //     method: 'POST',
-            //     body: JSON.stringify({ name, email, message }),
-            //     headers: { 'Content-Type': 'application/json' }
-            // });
-        });
-
-        // ==================== SCROLL ANIMATIONS ====================
-        // Intersection Observer for fade-in animations on scroll
+        // Intersection Observer for project cards
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -1017,56 +267,18 @@
             });
         }, observerOptions);
 
-        // Observe project cards for animation
         document.querySelectorAll('.project-card').forEach((card, index) => {
             card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = `all 0.6s ease ${index * 0.1}s`;
             observer.observe(card);
         });
+            document.querySelectorAll('.hero-video').forEach(video => {
+  video.addEventListener('mouseenter', () => video.play());
+  video.addEventListener('mouseleave', () => video.pause());
+});
 
-        // ==================== KEYBOARD NAVIGATION ====================
-        // Ensure all interactive elements are keyboard accessible
-        document.querySelectorAll('.project-card, .social-link, .skill-tag').forEach(element => {
-            element.setAttribute('tabindex', '0');
-            
-            element.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    element.click();
-                }
-            });
-        });
-
-        // ==================== PERFORMANCE OPTIMIZATION ====================
-        // Lazy load images for better performance
-        if ('loading' in HTMLImageElement.prototype) {
-            const images = document.querySelectorAll('img[loading="lazy"]');
-            images.forEach(img => {
-                img.src = img.dataset.src;
-            });
-        } else {
-            // Fallback for browsers that don't support lazy loading
-            const script = document.createElement('script');
-            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
-            document.body.appendChild(script);
-        }
-
-        // ==================== ACCESSIBILITY ENHANCEMENTS ====================
-        // Add focus visible styles for keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                document.body.classList.add('keyboard-nav');
-            }
-        });
-
-        document.addEventListener('mousedown', () => {
-            document.body.classList.remove('keyboard-nav');
-        });
-
-        // ==================== CONSOLE EASTER EGG ====================
-        console.log('%c🎮 Game Developer Portfolio', 'color: #00ffff; font-size: 20px; font-weight: bold;');
-        console.log('%cInterested in the code? Check out the source!', 'color: #ff00ff; font-size: 14px;');
-        console.log('%cLet\'s build something amazing together! 🚀', 'color: #7b2cbf; font-size: 14px;');
     </script>
+    
 </body>
 </html>

@@ -1,0 +1,157 @@
+<section class="projects">
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card">
+            <div class="project-thumbnail">🎮</div>
+            <div class="project-content">
+                <h3 class="project-title">Neon Pulse Arena</h3>
+                <ul class="project-features">
+                    <li>Fast-paced multiplayer combat with real-time synchronization</li>
+                    <li>Dynamic procedural arena generation system</li>
+                    <li>Advanced AI enemies with adaptive difficulty scaling</li>
+                    <li>Customizable character abilities and skill trees</li>
+                    <li>Cross-platform matchmaking and leaderboards</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-badge">Unity</span>
+                    <span class="tech-badge">C#</span>
+                    <span class="tech-badge">Photon</span>
+                    <span class="tech-badge">Blender</span>
+                </div>
+                <a href="#" class="project-button">Play Demo</a>
+            </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+            <div class="project-thumbnail">🌌</div>
+            <div class="project-content">
+                <h3 class="project-title">Stellar Odyssey</h3>
+                <ul class="project-features">
+                    <li>Open-world space exploration with seamless planet transitions</li>
+                    <li>Resource gathering and crafting system with 200+ items</li>
+                    <li>Physics-based spaceship combat and navigation</li>
+                    <li>Procedural quest generation with branching narratives</li>
+                    <li>Dynamic economy system across multiple star systems</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-badge">Unreal Engine</span>
+                    <span class="tech-badge">C++</span>
+                    <span class="tech-badge">Blueprint</span>
+                    <span class="tech-badge">Houdini</span>
+                </div>
+                <a href="#" class="project-button">View More</a>
+            </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+            <div class="project-thumbnail">⚔️</div>
+            <div class="project-content">
+                <h3 class="project-title">Shadow Legends RPG</h3>
+                <ul class="project-features">
+                    <li>Turn-based combat with tactical positioning mechanics</li>
+                    <li>Deep character progression with multiple class paths</li>
+                    <li>Hand-crafted dungeons with environmental puzzles</li>
+                    <li>Companion system with unique character storylines</li>
+                    <li>Dynamic weather affecting gameplay and strategies</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-badge">Unity</span>
+                    <span class="tech-badge">C#</span>
+                    <span class="tech-badge">Spine</span>
+                    <span class="tech-badge">Aseprite</span>
+                </div>
+                <a href="#" class="project-button">Play Demo</a>
+            </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card">
+            <div class="project-thumbnail">🧩</div>
+            <div class="project-content">
+                <h3 class="project-title">Chrono Shift</h3>
+                <ul class="project-features">
+                    <li>Time manipulation puzzles with paradox prevention</li>
+                    <li>Multiple timeline management and interaction</li>
+                    <li>Narrative-driven gameplay with player choice impact</li>
+                    <li>Custom physics engine for time-based mechanics</li>
+                    <li>Minimalist art style with dynamic lighting effects</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-badge">Godot</span>
+                    <span class="tech-badge">GDScript</span>
+                    <span class="tech-badge">Inkle</span>
+                    <span class="tech-badge">GIMP</span>
+                </div>
+                <a href="#" class="project-button">View More</a>
+            </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card">
+            <div class="project-thumbnail">🏃</div>
+            <div class="project-content">
+                <h3 class="project-title">Velocity Runner VR</h3>
+                <ul class="project-features">
+                    <li>Full VR immersion with motion controller support</li>
+                    <li>Parkour mechanics optimized for virtual reality</li>
+                    <li>Procedurally generated obstacle courses</li>
+                    <li>Global time trial leaderboards and ghost racing</li>
+                    <li>Comfort mode settings to prevent motion sickness</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-badge">Unity</span>
+                    <span class="tech-badge">C#</span>
+                    <span class="tech-badge">XR Toolkit</span>
+                    <span class="tech-badge">SteamVR</span>
+                </div>
+                <a href="#" class="project-button">Play Demo</a>
+            </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="project-card">
+            <div class="project-thumbnail">🎲</div>
+            <div class="project-content">
+                <h3 class="project-title">Dungeon Master's Toolkit</h3>
+                <ul class="project-features">
+                    <li>Real-time collaborative tabletop RPG platform</li>
+                    <li>Dynamic map creation with fog of war system</li>
+                    <li>Integrated dice roller with probability analytics</li>
+                    <li>Character sheet manager with automated calculations</li>
+                    <li>Voice chat integration and session recording</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-badge">React</span>
+                    <span class="tech-badge">Node.js</span>
+                    <span class="tech-badge">WebGL</span>
+                    <span class="tech-badge">Socket.io</span>
+                </div>
+                <a href="#" class="project-button">View More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-quote">"Code. Design. Play. Repeat."</div>
+        <div class="footer-links">
+            <a href="https://linkedin.com" class="footer-link">LinkedIn</a>
+            <a href="https://instagram.com" class="footer-link">Instagram</a>
+            <a href="mailto:contact@example.com" class="footer-link">Contact</a>
+            <a href="resume.pdf" class="footer-link">Resume</a>
+        </div>
+        <div class="footer-divider"></div>
+        <p class="footer-copyright">© 2025 Game Developer Portfolio. Built with passion for gaming.</p>
+    </div>
+</footer>
